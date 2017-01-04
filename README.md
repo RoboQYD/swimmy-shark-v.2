@@ -44,7 +44,7 @@ The majority of these sounds were edited using Audacity. Fonts used:
 
 All fonts were retrieved from "dafont.com". 
 
-Mentors of Team 333
+The Mentors of Team 333:
 
 - Mr. F. Dispenza
 - Mr. Mike V.
