@@ -7,16 +7,17 @@ var load_state = {
 
     game.load.image('shark', 'assets/images/essentials/shark.png');
     game.load.image('sand', 'assets/images/essentials/sand.png');
-    
+
     game.load.image('rock_1', 'assets/images/obstacles/rock_1.png');
     game.load.image('anchor', 'assets/images/obstacles/anchor.png');
     game.load.image('mine', 'assets/images/obstacles/mine.png');
     game.load.image('drum', 'assets/images/obstacles/drum.png');
-    
+
     game.load.image('bloom', 'assets/images/effects/bloom.png');
     game.load.image('fade', 'assets/images/effects/fade.png');
     game.load.image('sea', 'assets/images/effects/sea.png');
-    
+    game.load.spritesheet('explosion', 'assets/images/effects/explosion_spritesheet.png', 200, 240);
+
     game.load.image('school_1', 'assets/images/schools/school_1.png');
     game.load.image('school_2', 'assets/images/schools/school_2.png');
     game.load.image('school_3', 'assets/images/schools/school_3.png');
@@ -25,8 +26,7 @@ var load_state = {
     game.load.image('school_6', 'assets/images/schools/school_6.png');
     game.load.image('school_7', 'assets/images/schools/school_7.png');
     game.load.image('school_8', 'assets/images/schools/school_8.png');
-    game.load.spritesheet('explosion', 'assets/images/explosion_spritesheet.png', 200, 240);
-    
+
     game.load.audio('swim', 'assets/sounds/swim.wav');
     game.load.audio('underwater', 'assets/sounds/underwater.wav');
     game.load.audio('bleep', 'assets/sounds/bleep.wav');

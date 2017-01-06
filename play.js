@@ -18,7 +18,7 @@ var play_state = {
     this.space_key.onDown.add(this.play, this); //Sets the spacebar as the start button//
 
     this.background = game.add.group();
-    
+
     //Obstacles Group//
     this.obstacles = game.add.group(); //Creates the obstacle group//
     this.obstacles.enableBody = true; //Enables body for the obstacle group//
@@ -54,23 +54,23 @@ var play_state = {
     .to({ alpha: 0.5 }, 3000, Phaser.Easing.Linear.None, true)
     .loop()
     .start();
- 
+
     //The Title//
     this.title = game.add.bitmapText(20, 45, 'jawbreaker', "SWIMMY SHARK", 35);
     this.title.fixedToCamera = true;
-   
+
     //The Start Text//
     this.start_text = game.add.bitmapText(125, 400, 'jawbreaker', "TAP TO BEGIN", 20);
     this.start_text.fixedToCamera = true;
-  
+
     this.headline = game.add.bitmapText(15, 25, 'jawbreaker', "FIRST TEAM 333 PRESENTS...", 15);
     this.headline.fixedToCamera = true;
-    
+
     //The Bloom Sprite//
     this.bloom = game.add.sprite(0, 0, 'bloom'); //Creates the bloom sprite//
     this.bloom.alpha = 0; //Makes the bloom invisible//
     this.bloom.bringToTop(); //Brings the bloom sprite to the front//
-   
+
     //The Fade Sprite//
     this.fade = game.add.sprite(0, 0, 'fade'); //Creates the bloom sprite//
     this.fade.alpha = 1; //Makes the bloom invisible//
@@ -84,18 +84,18 @@ var play_state = {
   //Starts the game//
   play: function(){
 
-    if(this.start == 0){ 
+    if(this.start == 0){
 
       this.start = 1; //Set start to 1//
 
       this.space_key.onDown.add(this.jump, this); //Sets the space key to the jump button//
-    
+
       this.shark.enableBody = true; //Enables body for the shark//
       game.physics.enable(this.shark); //Enables physics for the shark//
       this.shark.body.gravity.y = 800; //Sets the gravity of the shark to 400//
       this.shark.body.setSize(100, 25, 0, 0);
       this.jump(); //Tells the shark to jump//
-      
+
       this.score_text = game.add.bitmapText((this.worldx/2) - 20, 25, 'jawbreaker', "0", 50);
       this.score_text.alpha = 0;
       this.score_text.fixedToCamera = true;
@@ -104,7 +104,7 @@ var play_state = {
       game.add.tween(this.start_text).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true);
       game.add.tween(this.headline).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true);
       game.add.tween(this.score_text).to({ alpha: 1 }, 500, Phaser.Easing.Linear.None, true);
-      
+
       this.obstacle_timer = game.time.events.loop(2000, this.addObstacle, this);
     }
   },
@@ -133,7 +133,7 @@ var play_state = {
         .to({angle: '-4'}, speed, Phaser.Easing.Linear.None, true)
         .loop()
         .start();
-    
+
       var lift = game.add.tween(this.mine) //An animation for the anchor that makes it lift up and down//
         .to({y: '+25'}, speed, Phaser.Easing.Linear.None, true)
         .to({y: '-25'}, speed, Phaser.Easing.Linear.None, true)
@@ -149,17 +149,17 @@ var play_state = {
       this.anchor.anchor.setTo(0.5, 1); //Sets the anchor of the anchor to the middle of the bottom of it//
       this.anchor.outOfBoundsKill = true; //Tells the anchor to kill itself if it is outside of the canvas//
       this.anchor.body.velocity.x = -200; //Makes the anchor move to the left//
-      
+
       var lift = game.add.tween(this.anchor) //An animation for the anchor that makes it lift up and down//
         .to({y: '+50'}, speed, Phaser.Easing.Linear.None, true)
         .to({y: '-50'}, speed, Phaser.Easing.Linear.None, true)
         .loop()
         .start();
-       
+
     }
 
     if(orientation == 3){
-      //Drum// 
+      //Drum//
       this.drum = this.obstacles.create(560, 0, 'drum'); //Creates the drum as an object//
       this.drum.anchor.setTo(0.5, 0.5); //Sets the anchor of the drum to the center of it//
       this.drum.outOfBoundsKill = true; //Tells the drum to kill itself if it is out of the screen//
@@ -185,7 +185,7 @@ var play_state = {
       this.stalagmite.outOfBoundsKill = true; //Tells the stalagmite to kill itself if it is outside of the screen//
       this.stalagmite.body.velocity.x = -200; //Tells the stalagmite to move to the right//
     }
-    
+
     this.round += 1;
     if(this.round > 0){
       this.score += 1;
@@ -208,15 +208,15 @@ var play_state = {
     this.school.anchor.setTo(0.5, 0.5);//
     this.school.outOfBoundsKill = true;
     game.add.tween(this.school).to({ x: -350 }, (time + 3) * 1000, Phaser.Easing.Linear.None, true);
-    
+
   },
-  
+
   //Makes the shark Jump//
   jump: function(){
     if(this.shark.alive == true){
       this.shark.body.velocity.y -= 350;
       this.swim.play();
-      
+
       if(this.shark.angle > -45){
         game.add.tween(this.shark).to({angle: '-13'}, 100, Phaser.Easing.Linear.None, true);
       }
@@ -241,8 +241,8 @@ var play_state = {
   },
 
   //Kills the shark//
-  death: function(){  
-    if(this.shark.alive == true){ 
+  death: function(){
+    if(this.shark.alive == true){
       game.time.events.remove(this.obstacle_timer);
       game.time.events.remove(this.message_timer);
       this.punch.play();
@@ -268,7 +268,7 @@ var play_state = {
   //Constantly updates variables//
   update: function(){
 
-    
+
     if(this.start == 1){
       game.physics.arcade.overlap(this.shark, this.obstacles, this.death, null, this);
       game.physics.arcade.overlap(this.shark, this.mine, this.explode, null, this);
@@ -276,7 +276,7 @@ var play_state = {
       game.physics.arcade.collide(this.shark, this.ground);
 
       this.obstacles.forEachAlive(function(p){game.physics.arcade.collide(p, this.obstacles);},this);
-     
+
       if(this.shark.y < 0){
         this.shark.body.velocity.y = 250;
         game.add.tween(this.shark).to({ angle: 15}, 250, Phaser.Easing.Linear.None, true);
@@ -286,12 +286,12 @@ var play_state = {
         this.shark.angle += 0.65;
       }
     }
-    
+
     if(this.shark.alive == true){
         this.sand.tilePosition.x -= 4;
     }
   },
-  
+
   //Restarts the game//
   restart: function(){
     if(this.shark.body.touching.down == true){
@@ -299,7 +299,7 @@ var play_state = {
       this.score_text.alpha = 0;
       this.retry_text.alpha = 0;
       game.add.tween(this.fade).to({ alpha: 1}, 250, Phaser.Easing.Linear.None, true);
-      game.time.events.add(Phaser.Timer.SECOND * 0.5, this.refresh, this); 
+      game.time.events.add(Phaser.Timer.SECOND * 0.5, this.refresh, this);
     }
   },
 
